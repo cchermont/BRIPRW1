@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Pássaros - Listagem</title>
+    <!-- Bootstrap CSS via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar idêntica em todas as páginas -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Sistema de Pássaros</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cadastro.html">Cadastro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="listagem.html">Listagem</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="detalhes.html">Detalhes</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12">
+                <h2>Listagem de Pássaros</h2>
+                <!-- Tabela -->
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nome Popular</th>
+                            <th>Nome Científico</th>
+                            <th>Região</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sabiá</td>
+                            <td>Turdus rufiventris</td>
+                            <td>Sudeste</td>
+                            <td>
+                                <button class="btn btn-info btn-sm" onclick="mostrarDetalhes('Sabiá', 'Turdus rufiventris', 'Sudeste', 'Ave comum em áreas urbanas e rurais.')">Detalhes</button>
+                                <button class="btn btn-danger btn-sm" onclick="excluirPassaro('Sabiá')">Excluir</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Arara</td>
+                            <td>Ara ararauna</td>
+                            <td>Norte</td>
+                            <td>
+                                <button class="btn btn-info btn-sm" onclick="mostrarDetalhes('Arara', 'Ara ararauna', 'Norte', 'Ave colorida e inteligente, ameaçada de extinção.')">Detalhes</button>
+                                <button class="btn btn-danger btn-sm" onclick="excluirPassaro('Arara')">Excluir</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Beija-flor</td>
+                            <td>Trochilidae</td>
+                            <td>Centro-Oeste</td>
+                            <td>
+                                <button class="btn btn-info btn-sm" onclick="mostrarDetalhes('Beija-flor', 'Trochilidae', 'Centro-Oeste', 'Pequenas aves que se alimentam de néctar.')">Detalhes</button>
+                                <button class="btn btn-danger btn-sm" onclick="excluirPassaro('Beija-flor')">Excluir</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Pinguim</td>
+                            <td>Spheniscus demersus</td>
+                            <td>Sul</td>
+                            <td>
+                                <button class="btn btn-info btn-sm" onclick="mostrarDetalhes('Pinguim', 'Spheniscus demersus', 'Sul', 'Ave marinha adaptada à vida aquática.')">Detalhes</button>
+                                <button class="btn btn-danger btn-sm" onclick="excluirPassaro('Pinguim')">Excluir</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tucano</td>
+                            <td>Ramphastos toco</td>
+                            <td>Sudeste</td>
+                            <td>
+                                <button class="btn btn-info btn-sm" onclick="mostrarDetalhes('Tucano', 'Ramphastos toco', 'Sudeste', 'Ave com bico grande e colorido.')">Detalhes</button>
+                                <button class="btn btn-danger btn-sm" onclick="excluirPassaro('Tucano')">Excluir</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de detalhes -->
+    <div class="modal fade" id="detalhesModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detalhes do Pássaro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Nome Popular:</strong> <span id="modalNomePopular"></span></p>
+                    <p><strong>Nome Científico:</strong> <span id="modalNomeCientifico"></span></p>
+                    <p><strong>Região:</strong> <span id="modalRegiao"></span></p>
+                    <p><strong>Observações:</strong> <span id="modalObservacoes"></span></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function mostrarDetalhes(nomePopular, nomeCientifico, regiao, observacoes) {
+            document.getElementById('modalNomePopular').textContent = nomePopular;
+            document.getElementById('modalNomeCientifico').textContent = nomeCientifico;
+            document.getElementById('modalRegiao').textContent = regiao;
+            document.getElementById('modalObservacoes').textContent = observacoes;
+            var modal = new bootstrap.Modal(document.getElementById('detalhesModal'));
+            modal.show();
+        }
+
+        function excluirPassaro(nome) {
+            alert('Pássaro "' + nome + '" excluído com sucesso!');
+        }
+    </script>
+</body>
+</html>
